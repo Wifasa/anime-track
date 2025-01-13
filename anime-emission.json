@@ -1,0 +1,194 @@
+[
+    {
+        "Id": 1,
+        "Name": "Botsuraku Yotei no Kizoku dakedo, Hima Datta kara Mahou wo Kiwametemita",
+        "Day": "Monday",
+        "Current_Cap": 3,
+        "Status": "emission",
+        "Date&Time": "2025-01-13T22:00:25.368853"
+    },
+    {
+        "Id": 2,
+        "Name": "Mahoutsukai no Yakusoku",
+        "Day": "Monday",
+        "Current_Cap": 1,
+        "Status": "emission",
+        "Date&Time": "2025-01-13T22:00:25.368853"
+    },
+    {
+        "Id": 3,
+        "Name": "Haigakura",
+        "Day": "Monday",
+        "Current_Cap": 7,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 4,
+        "Name": "Arifureta Shokugyou de Sekai Saikyou Season 3",
+        "Day": "Monday",
+        "Current_Cap": 11,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 5,
+        "Name": "Salaryman ga Isekai ni Ittara Shitennou ni Natta Hanashi",
+        "Day": "Monday",
+        "Current_Cap": 3,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 6,
+        "Name": "Hazure Skill \"Kinomi Master\"",
+        "Day": "Tuesday",
+        "Current_Cap": 2,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 7,
+        "Name": "Re:Zero kara Hajimeru Isekai Seikatsu 3rd Season",
+        "Day": "Wednesday",
+        "Current_Cap": 8,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 8,
+        "Name": "Ishura",
+        "Day": "Wednesday",
+        "Current_Cap": 13,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 9,
+        "Name": "Around 40 Otoko no Isekai Tsuuhan",
+        "Day": "Wednesday",
+        "Current_Cap": 1,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 10,
+        "Name": "Dr. Stone: Science Future",
+        "Day": "Wednesday",
+        "Current_Cap": 1,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 11,
+        "Name": "Magic Maker: Isekai Mahou no Tsukurikata",
+        "Day": "Wednesday",
+        "Current_Cap": 1,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 12,
+        "Name": "Izure Saikyou no Renkinjutsushi?",
+        "Day": "Wednesday",
+        "Current_Cap": 2,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 13,
+        "Name": "Dungeon ni Deai wo Motomeru no wa Machigatteiru Darou ka V",
+        "Day": "Thursday",
+        "Current_Cap": 11,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 14,
+        "Name": "Fuguushoku \"Kanteishi\" ga Jitsu wa Saikyou Datta",
+        "Day": "Thursday",
+        "Current_Cap": 1,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 15,
+        "Name": "Akuyaku Reijou Tensei Ojisan",
+        "Day": "Thursday",
+        "Current_Cap": 1,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 16,
+        "Name": "Girumasu",
+        "Day": "Friday",
+        "Current_Cap": 1,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 17,
+        "Name": "Farmagia",
+        "Day": "Friday",
+        "Current_Cap": 1,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 18,
+        "Name": "Class no Daikirai na Joshi to Kekkon suru Koto ni Natta.",
+        "Day": "Friday",
+        "Current_Cap": 2,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 19,
+        "Name": "A-Rank Party wo Ridatsu shita Ore wa, Moto Oshiego-tachi to Meikyuu Shinbu wo Mezasu.",
+        "Day": "Saturday",
+        "Current_Cap": 1,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 20,
+        "Name": "Ao no Exorcist: Yosuga-hen",
+        "Day": "Saturday",
+        "Current_Cap": 2,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 21,
+        "Name": "NEET Kunoichi to Nazeka Dousei Hajimemashita",
+        "Day": "Saturday",
+        "Current_Cap": 2,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 22,
+        "Name": "Ore dake Level Up na Ken Season 2: Arise from the Shadow",
+        "Day": "Saturday",
+        "Current_Cap": 2,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 23,
+        "Name": "S-Rank Monster no \"Behemoth\" dakedo, Neko to Machigawarete Elf Musume no Pet toshite Kurashitemasu",
+        "Day": "Saturday",
+        "Current_Cap": 3,
+        "Status": "emission",
+        "Date&Time": null
+    },
+    {
+        "Id": 24,
+        "Name": "Shangri-La Frontier: Kusoge Hunter, Kamige ni Idoman to su",
+        "Day": "Sunday",
+        "Current_Cap": 39,
+        "Status": "emission",
+        "Date&Time": null
+    }
+]
