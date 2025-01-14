@@ -1,5 +1,6 @@
 import json
 from datetime import datetime
+import os
 
 current_Date = datetime.now()
 
@@ -342,10 +343,18 @@ pereza = ['One Punch Man',
 'Eiyuuou, Bu wo Kiwameru Tame Tenseisu: Soshite, Sekai Saikyou no Minarai Kishi♀']
 
 # print(datetime.now().isoformat())
+
+def clear_window():
+    os.system('cls' if os.name == "nt" else "clear")
+
 def update_new():
 
-    with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\anime-emission.json', 'r') as emission:
-        dic_emi = json.load(emission)
+    try:
+        with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\anime-emission.json', 'r') as emission:
+            dic_emi = json.load(emission)
+    except:
+        with open('anime-emission.json', 'r') as emission:
+            dic_emi = json.load(emission)
 
 
     names = ['A-Rank Party wo Ridatsu shita Ore wa, Moto Oshiego-tachi to Meikyuu Shinbu wo Mezasu.',
@@ -365,21 +374,75 @@ def update_new():
 
         dic_temp={
             "Id":counter_Id,
-            "Name":names[i],
-            "Day": day,
-            "Current_Cap": Current_Cap[i],
-            "Status": status,
-            "Date&Time": None
+            "Values":{
+                "Name":names[i],
+                "Day": day,
+                "Current_Cap": Current_Cap[i],
+                "Status": status,
+                "Date&Time": None
+            }
         }
 
         dic_emi.append(dic_temp)
-
-    with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\anime-emission.json', 'w') as emission:
-        json.dump(dic_emi,emission, indent=4)
+    try:
+        with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\anime-emission.json', 'w') as emission:
+            json.dump(dic_emi,emission, indent=4)
+    except:
+        with open('anime-emission.json', 'w') as emission:
+            json.dump(dic_emi,emission, indent=4)
 
 def update_cap_status():
-    with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\anime-emission.json', 'r') as emission:
-        dic_emi = json.load(emission)
+    dic_emi_day = []
+    try:
+        with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\anime-emission.json', 'r') as emission:
+            dic_emi = json.load(emission)
+    except:
+        with open('anime-emission.json', 'r') as emission:
+            dic_emi = json.load(emission)
 
-    day_name = current_Date.strftime("%A")
+    print('Update current day chapter? y/n')
+    choice = (input(''))
+
+    if choice.lower() == 'y':
+        day_name = current_Date.strftime("%A")
+    else:
+        day_name = str(input(''))
+        # day_name = "Monday"
     
+    for i in dic_emi:
+        if i["Values"]["Day"] == day_name:
+            dic_emi_day.append(i)
+
+    for i in dic_emi_day:
+        print(f'Id: {i["Id"]} - Name: {i["Values"]["Name"]}')
+
+    print("Selec anime with id to update chapter number")
+
+    try:
+        chapter_update = int(input(""))
+    except:
+        print('Incorrect value, try again')
+        chapter_update = int(input(""))
+
+    print('Did you wan\'t to update more than one chapter? y/n defaul: N' )
+    chapter_update_number_multiple_value = input('')
+
+    if chapter_update_number_multiple_value.lower() == 'y':
+        print('Introduce how many chapters you wan\'t to add.')
+        chapter_update_number = input('')
+    else:
+        chapter_update_number = 1
+    
+    for i in dic_emi:
+        if i["Id"] == chapter_update:
+            i["Values"]["Current_Cap"] = ((i["Values"]["Current_Cap"])+chapter_update_number)
+    
+    try:
+        with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\anime-emission.json', 'w+') as emission:
+            json.dump(dic_emi,emission, indent=4)
+    except:
+        with open('anime-emission.json', 'w+') as emission:
+            json.dump(dic_emi,emission, indent=4)
+
+    clear_window()
+
