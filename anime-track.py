@@ -1,6 +1,7 @@
 import json
 from datetime import datetime
 import os
+import tkinter as tk
 
 current_Date = datetime.now()
 
@@ -356,34 +357,74 @@ def update_new():
         with open('anime-emission.json', 'r') as emission:
             dic_emi = json.load(emission)
 
+    print("Use Standart method or Advanced? S/A")
+    send_info_method = input('')
 
-    names = ['A-Rank Party wo Ridatsu shita Ore wa, Moto Oshiego-tachi to Meikyuu Shinbu wo Mezasu.',
-'Ao no Exorcist: Yosuga-hen',
-'NEET Kunoichi to Nazeka Dousei Hajimemashita',
-'Ore dake Level Up na Ken Season 2: Arise from the Shadow',
-'S-Rank Monster no \"Behemoth\" dakedo, Neko to Machigawarete Elf Musume no Pet toshite Kurashitemasu'
-]
-    day = 'saturday'
-    Current_Cap = [1,2,2,2,3]
-    status = "emission"
-    Date_Time = None #datetime.now().isoformat()
-    counter_Id = dic_emi[-1][next(iter(dic_emi[-1]))]
+    if send_info_method.upper == 'A':
 
-    for i in range(len(names)):
-        counter_Id += 1
+        names = []
+        day = ''
+        Current_Cap = []
+        status = "emission"
+        Date_Time = None #datetime.now().isoformat()
+        counter_Id = dic_emi[-1][next(iter(dic_emi[-1]))]
 
-        dic_temp={
-            "Id":counter_Id,
-            "Values":{
-                "Name":names[i],
-                "Day": day,
-                "Current_Cap": Current_Cap[i],
-                "Status": status,
-                "Date&Time": None
+        for i in range(len(names)):
+            counter_Id += 1
+
+            dic_temp={
+                "Id":counter_Id,
+                "Values":{
+                    "Name":names[i],
+                    "Day": day,
+                    "Current_Cap": Current_Cap[i],
+                    "Status": status,
+                    "Date&Time": None
+                }
             }
-        }
 
-        dic_emi.append(dic_temp)
+            dic_emi.append(dic_temp)
+
+    else:
+        local = {"send_info_bool": False}
+
+        window = tk.Tk()
+        window.title("New Anime Add")
+
+        window.geometry("400x250+600+600")
+
+        tk.Label(window, text="Name:").pack()
+        input_name = tk.Entry(window)
+        input_name.pack()
+
+        tk.Label(window, text="Cap:").pack()
+        input_Current_Cap = tk.Entry(window)
+        input_Current_Cap.pack()
+
+        tk.Button(window, text="Send", command=lambda: exec("send_info_bool = True", {}, local)).pack()
+
+        window.mainloop()
+
+        if local['send_info_bool'] == True:
+            name = input_name.get()
+            Current_Cap = input_Current_Cap.get()
+            # edad = entrada_edad.get()
+
+            dic_temp={
+                "Id":(dic_emi[-1][next(iter(dic_emi[-1]))]),
+                "Values":{
+                    "Name":name,
+                    "Day": current_Date.strftime("%A"),
+                    "Current_Cap": Current_Cap,
+                    "Status": "emission",
+                    "Date&Time": datetime.now().isoformat()
+                }
+            }
+            dic_emi.append(dic_temp)
+            window.destroy() 
+        else:
+            pass
+
     try:
         with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\anime-emission.json', 'w') as emission:
             json.dump(dic_emi,emission, indent=4)
@@ -406,11 +447,17 @@ def update_cap_status():
     if choice.lower() == 'y':
         day_name = current_Date.strftime("%A")
     else:
-        day_name = str(input(''))
-        # day_name = "Monday"
+        day_options = {1:"Monday",2:"Tuesday",3:"Wednesday",4:"Thursday",5:"Friday",6:"Saturday",7:"Sunday"}
+        print('Choice day')
+        for i in day_options:
+            print(f'Nº: {i}\t{day_options[i]}')
+        try:
+            day_name = day_options[int(input(''))]
+        except:
+            print('Error value')
     
     for i in dic_emi:
-        if i["Values"]["Day"] == day_name:
+        if i["Values"]["Day"] == day_name: # type: ignore
             dic_emi_day.append(i)
 
     for i in dic_emi_day:
@@ -424,7 +471,7 @@ def update_cap_status():
         print('Incorrect value, try again')
         chapter_update = int(input(""))
 
-    print('Did you wan\'t to update more than one chapter? y/n defaul: N' )
+    print('Did you wan\'t to update more than one chapter? y/n defaul: N')
     chapter_update_number_multiple_value = input('')
 
     if chapter_update_number_multiple_value.lower() == 'y':
@@ -436,6 +483,7 @@ def update_cap_status():
     for i in dic_emi:
         if i["Id"] == chapter_update:
             i["Values"]["Current_Cap"] = ((i["Values"]["Current_Cap"])+chapter_update_number)
+            i["Values"]["Date&Time"] = datetime.now().isoformat()
     
     try:
         with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\anime-emission.json', 'w+') as emission:
@@ -446,3 +494,5 @@ def update_cap_status():
 
     clear_window()
 
+# update_new()
+update_cap_status()
