@@ -348,7 +348,28 @@ pereza = ['One Punch Man',
 def clear_window():
     os.system('cls' if os.name == "nt" else "clear")
 
-def update_new():
+def window_update_new_close(input_name,input_Current_Cap,dic_emi,window):
+    name = input_name.get()
+    Current_Cap = input_Current_Cap.get()
+
+    dic_temp={
+        "Id": ((dic_emi[-1][next(iter(dic_emi[-1]))])) + 1,
+        "Values":{
+            "Name": name,
+            "Day": current_Date.strftime("%A"),
+            "Current_Cap": Current_Cap,
+            "Status": "emission",
+            "Date&Time": datetime.now().isoformat()
+        }
+    }
+    dic_emi.append(dic_temp)
+    window.destroy() 
+    
+    return dic_emi
+
+def update_new(window_menu):
+
+    window_menu.destroy()
 
     try:
         with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\anime-emission.json', 'r') as emission:
@@ -373,9 +394,9 @@ def update_new():
             counter_Id += 1
 
             dic_temp={
-                "Id":counter_Id,
+                "Id": counter_Id,
                 "Values":{
-                    "Name":names[i],
+                    "Name": names[i],
                     "Day": day,
                     "Current_Cap": Current_Cap[i],
                     "Status": status,
@@ -393,37 +414,22 @@ def update_new():
 
         window.geometry("400x250+600+600")
 
-        tk.Label(window, text="Name:").pack()
+        tk.Label(window, text="Name:").grid(row=0, column=0,sticky="nsew")
         input_name = tk.Entry(window)
-        input_name.pack()
+        input_name.grid(row=1, column=0,sticky="nsew")
 
-        tk.Label(window, text="Cap:").pack()
+        tk.Label(window, text="Cap:").grid(row=2, column=0,sticky="nsew")
         input_Current_Cap = tk.Entry(window)
-        input_Current_Cap.pack()
+        input_Current_Cap.grid(row=3, column=0,sticky="nsew")
 
-        tk.Button(window, text="Send", command=lambda: exec("send_info_bool = True", {}, local)).pack()
+        tk.Button(window, text="Send", command=lambda: window_update_new_close(input_name,input_Current_Cap,dic_emi,window)).grid(row=4, column=0,sticky="nsew")
+
+        for i in range(5):
+            window.grid_rowconfigure(i, weight=1)
+        window.grid_columnconfigure(0, weight=1)
+        window.attributes("-topmost", True)
 
         window.mainloop()
-
-        if local['send_info_bool'] == True:
-            name = input_name.get()
-            Current_Cap = input_Current_Cap.get()
-            # edad = entrada_edad.get()
-
-            dic_temp={
-                "Id":(dic_emi[-1][next(iter(dic_emi[-1]))]),
-                "Values":{
-                    "Name":name,
-                    "Day": current_Date.strftime("%A"),
-                    "Current_Cap": Current_Cap,
-                    "Status": "emission",
-                    "Date&Time": datetime.now().isoformat()
-                }
-            }
-            dic_emi.append(dic_temp)
-            window.destroy() 
-        else:
-            pass
 
     try:
         with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\anime-emission.json', 'w') as emission:
@@ -432,8 +438,13 @@ def update_new():
         with open('anime-emission.json', 'w') as emission:
             json.dump(dic_emi,emission, indent=4)
 
-def update_cap_status():
+    clear_window()
+
+def update_cap_status(window_menu):
+
+    window_menu.destroy()
     dic_emi_day = []
+
     try:
         with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\anime-emission.json', 'r') as emission:
             dic_emi = json.load(emission)
@@ -494,5 +505,24 @@ def update_cap_status():
 
     clear_window()
 
-# update_new()
-update_cap_status()
+
+if __name__ == "__main__":
+
+    window_main = tk.Tk()
+    window_main.title("Main menu")
+
+    window_main.geometry("400x250+600+600")
+
+    tk.Label(window_main, text="Add New Amime:").grid(row=0, column=0,sticky="nsew")
+    tk.Button(window_main, text="Select", borderwidth=1, relief="solid", command=lambda: update_new(window_main)).grid(row=0, column=1,sticky="nsew")
+
+    tk.Label(window_main, text="Update Chapter Number:").grid(row=1, column=0,sticky="nsew")
+    tk.Button(window_main, text="Select", borderwidth=1, relief="solid", command=lambda: update_cap_status(window_main)).grid(row=1, column=1,sticky="nsew")
+
+    for i in range(2):
+        window_main.grid_rowconfigure(i, weight=1)
+        window_main.grid_columnconfigure(i, weight=1)
+    window_main.attributes("-topmost", True)
+
+    window_main.mainloop()
+
