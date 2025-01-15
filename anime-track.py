@@ -378,10 +378,28 @@ def update_new(window_menu):
         with open('anime-emission.json', 'r') as emission:
             dic_emi = json.load(emission)
 
-    print("Use Standart method or Advanced? S/A")
-    send_info_method = input('')
 
-    if send_info_method.upper == 'A':
+    window_send_info_method = tk.Tk()
+    window_send_info_method.title()
+    window_send_info_method.geometry("400x250+600+600")
+
+
+    input_send_info_method = tk.StringVar()
+
+    tk.Label(window_send_info_method, text="Use Standart method or Advanced? S/A").grid(row=0, column=0, columnspan=2, sticky="nsew")
+    tk.Button(window_send_info_method, text="S", command=lambda: (window_send_info_method.destroy(), input_send_info_method.set("S"))).grid(row=1, column=0, sticky="nsew")
+    tk.Button(window_send_info_method, text="A", command=lambda: (window_send_info_method.destroy(), input_send_info_method.set("A"))).grid(row=1, column=1, sticky="nsew")
+
+    for i in range(2):
+        window_send_info_method.grid_rowconfigure(i, weight=1)
+        window_send_info_method.grid_columnconfigure(0, weight=1)
+    window_send_info_method.attributes("-topmost", True)
+
+    window_send_info_method.mainloop()
+
+    send_info_method = input_send_info_method.get()
+
+    if send_info_method.upper() == "A":
 
         names = []
         day = ''
@@ -407,8 +425,6 @@ def update_new(window_menu):
             dic_emi.append(dic_temp)
 
     else:
-        local = {"send_info_bool": False}
-
         window = tk.Tk()
         window.title("New Anime Add")
 
