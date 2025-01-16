@@ -83,20 +83,20 @@
         "Id": 9,
         "Values": {
             "Name": "Around 40 Otoko no Isekai Tsuuhan",
-            "Day": "Wednesday",
-            "Current_Cap": 1,
+            "Day": "Thursday",
+            "Current_Cap": 2,
             "Status": "emission",
-            "Date&Time": null
+            "Date&Time": "2025-01-16T19:03:41.623005"
         }
     },
     {
         "Id": 10,
         "Values": {
             "Name": "Dr. Stone: Science Future",
-            "Day": "Wednesday",
-            "Current_Cap": 1,
+            "Day": "Thursday",
+            "Current_Cap": 2,
             "Status": "emission",
-            "Date&Time": null
+            "Date&Time": "2025-01-16T20:12:20.047759"
         }
     },
     {
@@ -134,9 +134,9 @@
         "Values": {
             "Name": "Fuguushoku \"Kanteishi\" ga Jitsu wa Saikyou Datta",
             "Day": "Thursday",
-            "Current_Cap": 1,
+            "Current_Cap": 2,
             "Status": "emission",
-            "Date&Time": null
+            "Date&Time": "2025-01-16T19:25:59.616634"
         }
     },
     {
@@ -144,9 +144,9 @@
         "Values": {
             "Name": "Akuyaku Reijou Tensei Ojisan",
             "Day": "Thursday",
-            "Current_Cap": 1,
+            "Current_Cap": 2,
             "Status": "emission",
-            "Date&Time": null
+            "Date&Time": "2025-01-16T19:50:07.459161"
         }
     },
     {

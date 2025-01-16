@@ -1,0 +1,28 @@
+# Byte-compiled files
+*.pyc
+*.pyo
+*.pyd
+
+# Cache directories
+__pycache__/
+*.cache
+
+# Virtual environment
+venv/
+.env/
+
+# Editor files
+*.swp
+*.swo
+*.swn
+.idea/
+.vscode/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak
+
+# System files
+.DS_Store
+Thumbs.db

@@ -2,6 +2,7 @@ import json
 from datetime import datetime
 import os
 import tkinter as tk
+from models.windows_tk import Windows_tk
 
 current_Date = datetime.now()
 
@@ -372,7 +373,7 @@ def update_new(window_menu):
     window_menu.destroy()
 
     try:
-        with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\anime-emission.json', 'r') as emission:
+        with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\src\\anime-emission.json', 'r') as emission:
             dic_emi = json.load(emission)
     except:
         with open('anime-emission.json', 'r') as emission:
@@ -387,7 +388,7 @@ def update_new(window_menu):
     input_send_info_method = tk.StringVar()
 
     tk.Label(window_send_info_method, text="Use Standart method or Advanced? S/A").grid(row=0, column=0, columnspan=2, sticky="nsew")
-    tk.Button(window_send_info_method, text="S", command=lambda: (window_send_info_method.destroy(), input_send_info_method.set("S"))).grid(row=1, column=0, sticky="nsew")
+    tk.Button(window_send_info_method, text="S", command=lambda: (tk.Button.grid_forget, input_send_info_method.set("S"))).grid(row=1, column=0, sticky="nsew")
     tk.Button(window_send_info_method, text="A", command=lambda: (window_send_info_method.destroy(), input_send_info_method.set("A"))).grid(row=1, column=1, sticky="nsew")
 
     for i in range(2):
@@ -448,7 +449,7 @@ def update_new(window_menu):
         window.mainloop()
 
     try:
-        with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\anime-emission.json', 'w') as emission:
+        with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\src\\anime-emission.json', 'w') as emission:
             json.dump(dic_emi,emission, indent=4)
     except:
         with open('anime-emission.json', 'w') as emission:
@@ -462,7 +463,7 @@ def update_cap_status(window_menu):
     dic_emi_day = []
 
     try:
-        with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\anime-emission.json', 'r') as emission:
+        with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\src\\anime-emission.json', 'r') as emission:
             dic_emi = json.load(emission)
     except:
         with open('anime-emission.json', 'r') as emission:
@@ -513,7 +514,7 @@ def update_cap_status(window_menu):
             i["Values"]["Date&Time"] = datetime.now().isoformat()
     
     try:
-        with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\anime-emission.json', 'w+') as emission:
+        with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\src\\anime-emission.json', 'w+') as emission:
             json.dump(dic_emi,emission, indent=4)
     except:
         with open('anime-emission.json', 'w+') as emission:
@@ -521,24 +522,13 @@ def update_cap_status(window_menu):
 
     clear_window()
 
-
 if __name__ == "__main__":
 
-    window_main = tk.Tk()
-    window_main.title("Main menu")
+    window = tk.Tk()
+    
+    window_tk = Windows_tk(window)
 
-    window_main.geometry("400x250+600+600")
+    window_tk.window_main_menu()
 
-    tk.Label(window_main, text="Add New Amime:").grid(row=0, column=0,sticky="nsew")
-    tk.Button(window_main, text="Select", borderwidth=1, relief="solid", command=lambda: update_new(window_main)).grid(row=0, column=1,sticky="nsew")
-
-    tk.Label(window_main, text="Update Chapter Number:").grid(row=1, column=0,sticky="nsew")
-    tk.Button(window_main, text="Select", borderwidth=1, relief="solid", command=lambda: update_cap_status(window_main)).grid(row=1, column=1,sticky="nsew")
-
-    for i in range(2):
-        window_main.grid_rowconfigure(i, weight=1)
-        window_main.grid_columnconfigure(i, weight=1)
-    window_main.attributes("-topmost", True)
-
-    window_main.mainloop()
+    window.mainloop()
 
