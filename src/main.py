@@ -1,8 +1,7 @@
-import json
 from datetime import datetime
 import os
 import tkinter as tk
-from models.windows_tk import Windows_tk
+from control import Control
 
 current_Date = datetime.now()
 
@@ -368,35 +367,30 @@ def window_update_new_close(input_name,input_Current_Cap,dic_emi,window):
     
     return dic_emi
 
-def update_new(window_menu):
+def update_new():
 
-    window_menu.destroy()
+    # window_menu.destroy()
 
-    try:
-        with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\src\\anime-emission.json', 'r') as emission:
-            dic_emi = json.load(emission)
-    except:
-        with open('anime-emission.json', 'r') as emission:
-            dic_emi = json.load(emission)
+    input_send_info_method = window_tk.update_new()
+    dic_emi=Json_controls.get_anime_emi_data()
 
-
-    window_send_info_method = tk.Tk()
-    window_send_info_method.title()
-    window_send_info_method.geometry("400x250+600+600")
+    # window_send_info_method = tk.Tk()
+    # window_send_info_method.title()
+    # window_send_info_method.geometry("400x250+600+600")
 
 
-    input_send_info_method = tk.StringVar()
+    # input_send_info_method = tk.StringVar()
 
-    tk.Label(window_send_info_method, text="Use Standart method or Advanced? S/A").grid(row=0, column=0, columnspan=2, sticky="nsew")
-    tk.Button(window_send_info_method, text="S", command=lambda: (tk.Button.grid_forget, input_send_info_method.set("S"))).grid(row=1, column=0, sticky="nsew")
-    tk.Button(window_send_info_method, text="A", command=lambda: (window_send_info_method.destroy(), input_send_info_method.set("A"))).grid(row=1, column=1, sticky="nsew")
+    # tk.Label(window_send_info_method, text="Use Standart method or Advanced? S/A").grid(row=0, column=0, columnspan=2, sticky="nsew")
+    # tk.Button(window_send_info_method, text="S", command=lambda: (tk.Button.grid_forget, input_send_info_method.set("S"))).grid(row=1, column=0, sticky="nsew")
+    # tk.Button(window_send_info_method, text="A", command=lambda: (window_send_info_method.destroy(), input_send_info_method.set("A"))).grid(row=1, column=1, sticky="nsew")
 
-    for i in range(2):
-        window_send_info_method.grid_rowconfigure(i, weight=1)
-        window_send_info_method.grid_columnconfigure(0, weight=1)
-    window_send_info_method.attributes("-topmost", True)
+    # for i in range(2):
+    #     window_send_info_method.grid_rowconfigure(i, weight=1)
+    #     window_send_info_method.grid_columnconfigure(0, weight=1)
+    # window_send_info_method.attributes("-topmost", True)
 
-    window_send_info_method.mainloop()
+    # window_send_info_method.mainloop()
 
     send_info_method = input_send_info_method.get()
 
@@ -448,12 +442,7 @@ def update_new(window_menu):
 
         window.mainloop()
 
-    try:
-        with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\src\\anime-emission.json', 'w') as emission:
-            json.dump(dic_emi,emission, indent=4)
-    except:
-        with open('anime-emission.json', 'w') as emission:
-            json.dump(dic_emi,emission, indent=4)
+    Json_controls.save_anime_emi_data(dic_emi)
 
     clear_window()
 
@@ -462,12 +451,7 @@ def update_cap_status(window_menu):
     window_menu.destroy()
     dic_emi_day = []
 
-    try:
-        with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\src\\anime-emission.json', 'r') as emission:
-            dic_emi = json.load(emission)
-    except:
-        with open('anime-emission.json', 'r') as emission:
-            dic_emi = json.load(emission)
+    dic_emi = Json_controls.get_anime_emi_data()
 
     print('Update current day chapter? y/n')
     choice = (input(''))
@@ -513,22 +497,12 @@ def update_cap_status(window_menu):
             i["Values"]["Current_Cap"] = ((i["Values"]["Current_Cap"])+chapter_update_number)
             i["Values"]["Date&Time"] = datetime.now().isoformat()
     
-    try:
-        with open('\\\\Casa-JJ\\Estudios\\PROYECTOS\\anime-track\\src\\anime-emission.json', 'w+') as emission:
-            json.dump(dic_emi,emission, indent=4)
-    except:
-        with open('anime-emission.json', 'w+') as emission:
-            json.dump(dic_emi,emission, indent=4)
+    Json_controls.save_anime_emi_data(dic_emi)
 
     clear_window()
 
 if __name__ == "__main__":
-
-    window = tk.Tk()
     
-    window_tk = Windows_tk(window)
+    control = Control()
 
-    window_tk.window_main_menu()
-
-    window.mainloop()
-
+    control.control_window_main_menu()
