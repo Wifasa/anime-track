@@ -348,103 +348,103 @@ pereza = ['One Punch Man',
 def clear_window():
     os.system('cls' if os.name == "nt" else "clear")
 
-def window_update_new_close(input_name,input_Current_Cap,dic_emi,window):
-    name = input_name.get()
-    Current_Cap = input_Current_Cap.get()
+# def window_update_new_close(input_name,input_Current_Cap,dic_emi,window):
+#     name = input_name.get()
+#     Current_Cap = input_Current_Cap.get()
 
-    dic_temp={
-        "Id": ((dic_emi[-1][next(iter(dic_emi[-1]))])) + 1,
-        "Values":{
-            "Name": name,
-            "Day": current_Date.strftime("%A"),
-            "Current_Cap": Current_Cap,
-            "Status": "emission",
-            "Date&Time": datetime.now().isoformat()
-        }
-    }
-    dic_emi.append(dic_temp)
-    window.destroy() 
+#     dic_temp={
+#         "Id": ((dic_emi[-1][next(iter(dic_emi[-1]))])) + 1,
+#         "Values":{
+#             "Name": name,
+#             "Day": current_Date.strftime("%A"),
+#             "Current_Cap": Current_Cap,
+#             "Status": "emission",
+#             "Date&Time": datetime.now().isoformat()
+#         }
+#     }
+#     dic_emi.append(dic_temp)
+#     window.destroy() 
     
-    return dic_emi
+#     return dic_emi
 
-def update_new():
+# def update_new():
 
-    # window_menu.destroy()
+#     window_menu.destroy()
 
-    input_send_info_method = window_tk.update_new()
-    dic_emi=Json_controls.get_anime_emi_data()
+#     input_send_info_method = window_tk.update_new()
+#     dic_emi=Json_controls.get_anime_emi_data()
 
-    # window_send_info_method = tk.Tk()
-    # window_send_info_method.title()
-    # window_send_info_method.geometry("400x250+600+600")
+#     window_send_info_method = tk.Tk()
+#     window_send_info_method.title()
+#     window_send_info_method.geometry("400x250+600+600")
 
 
-    # input_send_info_method = tk.StringVar()
+#     input_send_info_method = tk.StringVar()
 
-    # tk.Label(window_send_info_method, text="Use Standart method or Advanced? S/A").grid(row=0, column=0, columnspan=2, sticky="nsew")
-    # tk.Button(window_send_info_method, text="S", command=lambda: (tk.Button.grid_forget, input_send_info_method.set("S"))).grid(row=1, column=0, sticky="nsew")
-    # tk.Button(window_send_info_method, text="A", command=lambda: (window_send_info_method.destroy(), input_send_info_method.set("A"))).grid(row=1, column=1, sticky="nsew")
+#     tk.Label(window_send_info_method, text="Use Standart method or Advanced? S/A").grid(row=0, column=0, columnspan=2, sticky="nsew")
+#     tk.Button(window_send_info_method, text="S", command=lambda: (tk.Button.grid_forget, input_send_info_method.set("S"))).grid(row=1, column=0, sticky="nsew")
+#     tk.Button(window_send_info_method, text="A", command=lambda: (window_send_info_method.destroy(), input_send_info_method.set("A"))).grid(row=1, column=1, sticky="nsew")
 
-    # for i in range(2):
-    #     window_send_info_method.grid_rowconfigure(i, weight=1)
-    #     window_send_info_method.grid_columnconfigure(0, weight=1)
-    # window_send_info_method.attributes("-topmost", True)
+#     for i in range(2):
+#         window_send_info_method.grid_rowconfigure(i, weight=1)
+#         window_send_info_method.grid_columnconfigure(0, weight=1)
+#     window_send_info_method.attributes("-topmost", True)
 
-    # window_send_info_method.mainloop()
+#     window_send_info_method.mainloop()
 
-    send_info_method = input_send_info_method.get()
+#     send_info_method = input_send_info_method.get()
 
-    if send_info_method.upper() == "A":
+#     if send_info_method.upper() == "A":
 
-        names = []
-        day = ''
-        Current_Cap = []
-        status = "emission"
-        Date_Time = None #datetime.now().isoformat()
-        counter_Id = dic_emi[-1][next(iter(dic_emi[-1]))]
+#         names = []
+#         day = ''
+#         Current_Cap = []
+#         status = "emission"
+#         Date_Time = None #datetime.now().isoformat()
+#         counter_Id = dic_emi[-1][next(iter(dic_emi[-1]))]
 
-        for i in range(len(names)):
-            counter_Id += 1
+#         for i in range(len(names)):
+#             counter_Id += 1
 
-            dic_temp={
-                "Id": counter_Id,
-                "Values":{
-                    "Name": names[i],
-                    "Day": day,
-                    "Current_Cap": Current_Cap[i],
-                    "Status": status,
-                    "Date&Time": None
-                }
-            }
+#             dic_temp={
+#                 "Id": counter_Id,
+#                 "Values":{
+#                     "Name": names[i],
+#                     "Day": day,
+#                     "Current_Cap": Current_Cap[i],
+#                     "Status": status,
+#                     "Date&Time": None
+#                 }
+#             }
 
-            dic_emi.append(dic_temp)
+#             dic_emi.append(dic_temp)
 
-    else:
-        window = tk.Tk()
-        window.title("New Anime Add")
+#     else:
+#         window = tk.Tk()
+#         window.title("New Anime Add")
 
-        window.geometry("400x250+600+600")
+#         window.geometry("400x250+600+600")
 
-        tk.Label(window, text="Name:").grid(row=0, column=0,sticky="nsew")
-        input_name = tk.Entry(window)
-        input_name.grid(row=1, column=0,sticky="nsew")
+#         tk.Label(window, text="Name:").grid(row=0, column=0,sticky="nsew")
+#         input_name = tk.Entry(window)
+#         input_name.grid(row=1, column=0,sticky="nsew")
 
-        tk.Label(window, text="Cap:").grid(row=2, column=0,sticky="nsew")
-        input_Current_Cap = tk.Entry(window)
-        input_Current_Cap.grid(row=3, column=0,sticky="nsew")
+#         tk.Label(window, text="Cap:").grid(row=2, column=0,sticky="nsew")
+#         input_Current_Cap = tk.Entry(window)
+#         input_Current_Cap.grid(row=3, column=0,sticky="nsew")
 
-        tk.Button(window, text="Send", command=lambda: window_update_new_close(input_name,input_Current_Cap,dic_emi,window)).grid(row=4, column=0,sticky="nsew")
+#         tk.Button(window, text="Send", command=lambda: window_update_new_close(input_name,input_Current_Cap,dic_emi,window)).grid(row=4, column=0,sticky="nsew")
 
-        for i in range(5):
-            window.grid_rowconfigure(i, weight=1)
-        window.grid_columnconfigure(0, weight=1)
-        window.attributes("-topmost", True)
+#         for i in range(5):
+#             window.grid_rowconfigure(i, weight=1)
+#         window.grid_columnconfigure(0, weight=1)
+#         window.attributes("-topmost", True)
 
-        window.mainloop()
+#         window.mainloop()
 
-    Json_controls.save_anime_emi_data(dic_emi)
+#     Json_controls.save_anime_emi_data(dic_emi)
 
-    clear_window()
+#     clear_window()
 
 def update_cap_status(window_menu):
 
