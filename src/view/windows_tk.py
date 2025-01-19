@@ -39,7 +39,7 @@ class Windows_tk:
 
         tk.Label(self.window, text="Use Standart method or Advanced? S/A").grid(row=0, column=0, columnspan=2)
         tk.Button(self.window, text="S", borderwidth=1, relief="solid", command=lambda: (self.standart_add_anime())).grid(row=1, column=0, padx=10, pady=5, sticky="nsew")
-        tk.Button(self.window, text="A", borderwidth=1, relief="solid", command=lambda: (input_send_info_method.set("A"))).grid(row=1, column=1, padx=10, pady=5, sticky="nsew")
+        tk.Button(self.window, text="A", borderwidth=1, relief="solid", command=lambda: (self.main_functions.update_new_anime_seeing())).grid(row=1, column=1, padx=10, pady=5, sticky="nsew")
 
         for i in range(2):
             self.window.grid_rowconfigure(i, weight=1)
@@ -75,7 +75,7 @@ class Windows_tk:
         self.window.title()
         input_send_info_method = tk.StringVar()
 
-        tk.Label(self.window, text="Update current day chapter? y/n", ).grid(column=0, row=0, columnspan=2)
+        tk.Label(self.window, text="Update current day chapter? y/n").grid(column=0, row=0, columnspan=2)
         tk.Button(self.window, text="Y", borderwidth=1, relief="solid", command=lambda: input_send_info_method.set("Y")).grid(column=0, row=1, sticky="nsew")
         tk.Button(self.window, text="N", borderwidth=1, relief="solid", command=lambda: self.update_anime_cap_status_day_select()).grid(column=1, row=1, sticky="nsew")
 

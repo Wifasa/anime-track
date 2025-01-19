@@ -5,6 +5,6 @@ class Control:
         self.window_tk = Windows_tk()
 
     def control_window_main_menu(self):
-        input_send_info_method = self.window_tk.window_main_menu()
+        self.window_tk.window_main_menu()
 
     # def control_update_new_anime_seeing(self):

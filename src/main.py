@@ -2,6 +2,7 @@ from datetime import datetime
 import os
 import tkinter as tk
 from control import Control
+from models.json_controls import Json_controls
 
 current_Date = datetime.now()
 
