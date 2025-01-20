@@ -1,6 +1,7 @@
 from view.windows_tk import Windows_tk
 
 class Control:
+
     def __init__(self) -> None:
         self.window_tk = Windows_tk()
 

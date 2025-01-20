@@ -1,11 +1,13 @@
 from datetime import datetime
 import os
-from .json_controls import Json_controls
+from .utils import Json_controls
 from datetime import datetime
 
 
 class Main_functions:
-    def __init__(self) -> None:
+
+    def __init__(self):
+
         self.current_Date = datetime.now()
         self.dic_emi = Json_controls.get_anime_emi_data()
 
@@ -37,6 +39,7 @@ class Main_functions:
         Json_controls.save_anime_emi_data(self.dic_emi)
 
     def window_update_new_standart(self, input_name, input_Current_Cap):
+
         name = input_name.get()
         Current_Cap = input_Current_Cap.get()
 
@@ -56,10 +59,16 @@ class Main_functions:
 
     def update_anime_cap_status(self, input_number_add, input_anime_update_id):
         
-        chapter_update_number = input_number_add.get()
         anime_update_id = input_anime_update_id.get()
-        
+
+        try:
+            chapter_update_number = input_number_add.get()
+        except:
+            chapter_update_number = 1
+
         for i in self.dic_emi:
             if i["Id"] == anime_update_id:
                 i["Values"]["Current_Cap"] = ((i["Values"]["Current_Cap"]) + chapter_update_number)
                 i["Values"]["Date&Time"] = datetime.now().isoformat()
+        
+        Json_controls.save_anime_emi_data(self.dic_emi)
