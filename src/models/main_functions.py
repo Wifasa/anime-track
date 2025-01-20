@@ -53,3 +53,13 @@ class Main_functions:
         self.dic_emi.append(dic_temp) 
         
         Json_controls.save_anime_emi_data(self.dic_emi)
+
+    def update_anime_cap_status(self, input_number_add, input_anime_update_id):
+        
+        chapter_update_number = input_number_add.get()
+        anime_update_id = input_anime_update_id.get()
+        
+        for i in self.dic_emi:
+            if i["Id"] == anime_update_id:
+                i["Values"]["Current_Cap"] = ((i["Values"]["Current_Cap"]) + chapter_update_number)
+                i["Values"]["Date&Time"] = datetime.now().isoformat()

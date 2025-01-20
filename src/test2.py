@@ -1,38 +1,27 @@
 import tkinter as tk
 
-def mostrar_seleccion():
-    print(f"Opción seleccionada: {opcion_seleccionada.get()}")
+def mostrar_selecciones():
+    # Recorrer las variables asociadas para mostrar su estado
+    for i, var in enumerate(variables):
+        print(f"Opción {i+1}: {'Seleccionada' if var.get() else 'No seleccionada'}")
 
-# Crear la ventana principal
+# Crear ventana principal
 window = tk.Tk()
-window.title("Checkbuttons Exclusivos")
+window.title("Generar Checkbuttons con For")
 
-# Variable que controla qué checkbutton está marcado
-opcion_seleccionada = tk.StringVar(value="")  # Valor inicial vacío
+# Lista de opciones
+opciones = ["Opción 1", "Opción 2", "Opción 3", "Opción 4", "Opción 5"]
 
-# Crear los Checkbuttons
-tk.Checkbutton(
-    window, 
-    text="Opción 1", 
-    variable=opcion_seleccionada, 
-    onvalue="Opción 1", 
-    offvalue="").pack(anchor="w")
+# Crear una lista para guardar las variables asociadas a cada Checkbutton
+variables = []
 
-tk.Checkbutton(
-    window, 
-    text="Opción 2", 
-    variable=opcion_seleccionada, 
-    onvalue="Opción 2", 
-    offvalue="").pack(anchor="w")
+# Crear los Checkbuttons dinámicamente
+for opcion in opciones:
+    var = tk.BooleanVar()  # Variable para controlar el estado del checkbox
+    variables.append(var)  # Guardar la variable en la lista
+    tk.Checkbutton(window, text=opcion, variable=var).pack(anchor="w")
 
-tk.Checkbutton(
-    window, 
-    text="Opción 3", 
-    variable=opcion_seleccionada, 
-    onvalue="Opción 3", 
-    offvalue="").pack(anchor="w")
-
-# Botón para mostrar la selección actual
-tk.Button(window, text="Mostrar Selección", command=mostrar_seleccion).pack(pady=10)
+# Botón para mostrar las selecciones
+tk.Button(window, text="Mostrar Selecciones", command=mostrar_selecciones).pack(pady=10)
 
 window.mainloop()
